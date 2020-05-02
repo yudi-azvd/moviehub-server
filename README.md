@@ -8,5 +8,10 @@
 
 - [Gerar `api_key`](https://www.themoviedb.org/settings/api)
 
+## The Movie Database
+Esse projeto usa os recursos disponibilizados pelo [TMDB](https://www.themoviedb.org/about/)
+
+Pegar logos de atribuição [aqui](https://www.themoviedb.org/about/logos-attribution).
+
 ## Backlog
 [Link](https://trello.com/b/6Pps0G5O/moviehub) pro Trello.
