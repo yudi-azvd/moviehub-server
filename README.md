@@ -9,7 +9,7 @@
 - [Gerar `api_key`](https://www.themoviedb.org/settings/api)
 
 ## The Movie Database
-Esse projeto usa os recursos disponibilizados pelo [TMDB](https://www.themoviedb.org/about/)
+Esse projeto usa os recursos disponibilizados pelo [TMDB](https://www.themoviedb.org/about/).
 
 Pegar logos de atribuição [aqui](https://www.themoviedb.org/about/logos-attribution).
 
