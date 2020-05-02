@@ -1,11 +1,9 @@
 import { Router } from 'express';
 
+import moviesRouter from './moviesRouter';
+
 const router = Router();
 
-router.get('/ola', (request, response) => {
-  const oi = 'olá';
-
-  return response.json({ oi });
-});
+router.use('/movies', moviesRouter);
 
 export default router;
