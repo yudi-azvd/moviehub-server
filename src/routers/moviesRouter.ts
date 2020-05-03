@@ -7,21 +7,15 @@ const moviesRouter = Router();
 const moviesRepository = new MoviesRepository();
 
 moviesRouter.get('/upcoming', async (request, response) => {
-  try {
-    const movies = await moviesRepository.findUpcoming();
-    return response.json(movies);
-  } catch (error) {
-    return response.json({ error: true });
-  }
+  const movies = await moviesRepository.findUpcoming();
+
+  return response.json(movies);
 });
 
 moviesRouter.get('/:id', async (request, response) => {
-  try {
-    const movie = await moviesRepository.findOne(request.params.id);
-    return response.json(movie);
-  } catch (error) {
-    return response.json({ error: true });
-  }
+  const movie = await moviesRepository.findOne(request.params.id);
+
+  return response.json(movie);
 });
 
 export default moviesRouter;
