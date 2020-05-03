@@ -23,9 +23,13 @@
     "prettier"
   ],
   "rules": {
+<<<<<<< HEAD
     "@typescript-eslint/no-unused-vars": ["error", {
       "argsIgnorePattern": "_"
     }],
+=======
+    "@typescript-eslint/camelcase": "off",
+>>>>>>> movies
     "prettier/prettier": "error",
     "import/extensions": [
       "error",
