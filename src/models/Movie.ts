@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-interface CreateMovie {
+export interface APIMovie {
   id: number;
 
   title: string;
@@ -36,7 +36,7 @@ class Movie {
     id,
     poster_path,
     backdrop_path,
-  }: CreateMovie) {
+  }: APIMovie) {
     this.id = id;
     this.title = title;
     this.originalTitle = original_title;
