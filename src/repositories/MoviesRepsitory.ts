@@ -1,11 +1,11 @@
 import { AxiosInstance } from 'axios';
 
-import Movie from '../models/Movie';
+import Movie, { APIMovie } from '../models/Movie';
 
 import api, { apiParams } from '../api';
 
 interface UpcomingMovies {
-  results: Movie[];
+  results: APIMovie[];
 }
 
 class MovieRepository {
