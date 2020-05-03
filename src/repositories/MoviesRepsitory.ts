@@ -35,7 +35,7 @@ class MovieRepository {
     return movie;
   }
 
-  public async getUpcoming(): Promise<Movie[]> {
+  public async findUpcoming(): Promise<Movie[]> {
     const moviesResponse = await this.api.get<UpcomingMovies>('/upcoming', {
       params: this.apiParams,
     });

@@ -8,7 +8,7 @@ const moviesRepository = new MoviesRepository();
 
 moviesRouter.get('/upcoming', async (request, response) => {
   try {
-    const movies = await moviesRepository.getUpcoming();
+    const movies = await moviesRepository.findUpcoming();
     return response.json(movies);
   } catch (error) {
     return response.json({ error: true });
