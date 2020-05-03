@@ -1,9 +1,8 @@
-import axios, { AxiosInstance } from 'axios';
-import dotenv from 'dotenv';
+import { AxiosInstance } from 'axios';
 
 import Movie from '../models/Movie';
 
-dotenv.config();
+import api, { apiParams } from '../api';
 
 interface UpcomingMovies {
   results: Movie[];
@@ -15,14 +14,10 @@ class MovieRepository {
   private apiParams: object;
 
   constructor() {
-    this.apiParams = {
-      api_key: process.env.TMDB_API_KEY,
-      language: 'pt-BR',
-    };
+    this.apiParams = apiParams;
 
-    this.api = axios.create({
-      baseURL: `${process.env.TMDB_BASE_URL}/movie`,
-    });
+    this.api = api;
+    this.api.defaults.baseURL += '/movie';
   }
 
   public async findOne(id: number | string): Promise<Movie> {

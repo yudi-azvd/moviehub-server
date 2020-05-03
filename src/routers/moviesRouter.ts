@@ -14,6 +14,7 @@ moviesRouter.get('/upcoming', async (request, response) => {
 
 moviesRouter.get('/:id', async (request, response) => {
   const movie = await moviesRepository.findOne(request.params.id);
+  console.log(movie.getFullPosterPath());
 
   return response.json(movie);
 });
