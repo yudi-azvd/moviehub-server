@@ -12,7 +12,7 @@ interface UpcomingMovies {
 class MovieRepository {
   private api: AxiosInstance;
 
-  private apiParams;
+  private apiParams: object;
 
   constructor() {
     this.apiParams = {
@@ -22,11 +22,6 @@ class MovieRepository {
 
     this.api = axios.create({
       baseURL: `${process.env.TMDB_BASE_URL}/movie`,
-      // Não funciona
-      // params: {
-      //   api_key: process.env.TMDB_API_KEY,
-      //   language: 'pt-BR',
-      // },
     });
   }
 
