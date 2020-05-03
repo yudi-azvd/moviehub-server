@@ -37,9 +37,7 @@ class MovieRepository {
 
   public async getUpcoming(): Promise<Movie[]> {
     const moviesResponse = await this.api.get<UpcomingMovies>('/upcoming', {
-      params: {
-        api_key: process.env.TMDB_API_KEY,
-      },
+      params: this.apiParams,
     });
 
     const movies = moviesResponse.data.results.map(result => new Movie(result));
