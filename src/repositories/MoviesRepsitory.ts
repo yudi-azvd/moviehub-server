@@ -8,7 +8,7 @@ interface UpcomingMovies {
   results: APIMovie[];
 }
 
-class MovieRepository {
+class MoviesRepository {
   private api: AxiosInstance;
 
   private apiParams: object;
@@ -41,4 +41,4 @@ class MovieRepository {
   }
 }
 
-export default MovieRepository;
+export default MoviesRepository;
