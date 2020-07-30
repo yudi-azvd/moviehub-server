@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 
 import Movie, { APIMovie } from '../models/Movie';
 
-import api, { apiParams } from '../api';
+import api from '../api';
 
 interface UpcomingMovies {
   results: APIMovie[];
@@ -11,19 +11,13 @@ interface UpcomingMovies {
 class MoviesRepository {
   private api: AxiosInstance;
 
-  private apiParams: object;
-
   constructor() {
-    this.apiParams = apiParams;
-
     this.api = api;
     this.api.defaults.baseURL += '/movie';
   }
 
   public async findOne(id: number | string): Promise<Movie> {
-    const movieResponse = await this.api.get(`${id}`, {
-      params: this.apiParams,
-    });
+    const movieResponse = await this.api.get(`${id}`);
 
     const movie = new Movie(movieResponse.data);
 
@@ -31,9 +25,7 @@ class MoviesRepository {
   }
 
   public async findUpcoming(): Promise<Movie[]> {
-    const moviesResponse = await this.api.get<UpcomingMovies>('/upcoming', {
-      params: this.apiParams,
-    });
+    const moviesResponse = await this.api.get<UpcomingMovies>('/upcoming');
 
     const movies = moviesResponse.data.results.map(result => new Movie(result));
 
