@@ -28,12 +28,16 @@ class MoviesRepository {
   }
 
   private async getCast(movieId: string | number): Promise<Actor[]> {
-    const actorsResponse = await this.api.get<APICredits>(`${movieId}/credits`);
+    const creditsResponse = await this.api.get<APICredits>(
+      `${movieId}/credits`,
+    );
 
     const numberOfActors = 10;
 
-    const cast = actorsResponse.data.cast.map(apiActor => new Actor(apiActor));
-    const firstTenActors = cast.splice(0, numberOfActors);
+    const actors = creditsResponse.data.cast.map(
+      apiActor => new Actor(apiActor),
+    );
+    const firstTenActors = actors.splice(0, numberOfActors);
 
     return firstTenActors;
   }
