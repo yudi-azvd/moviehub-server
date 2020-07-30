@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import MoviesRepository from '../repositories/MoviesRepsitory';
+import MoviesRepository from '../repositories/MoviesRepository';
 
 const moviesRouter = Router();
 
