@@ -1,3 +1,5 @@
+import Actor from './Actor';
+
 /* eslint-disable no-underscore-dangle */
 export interface APIMovie {
   id: number;
@@ -18,6 +20,8 @@ export interface APIMovie {
 }
 
 class Movie {
+  static tmdbBaseImageUrl = process.env.TMDB_BASE_IMAGE_URL;
+
   id: number;
 
   title: string;
@@ -34,7 +38,7 @@ class Movie {
 
   voteAverage: number;
 
-  static tmdbBaseImageUrl = process.env.TMDB_BASE_IMAGE_URL;
+  cast?: Actor[];
 
   constructor({
     title,
