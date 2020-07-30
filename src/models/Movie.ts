@@ -6,11 +6,16 @@ export interface APIMovie {
 
   title: string;
 
-  original_title: string;
-
   overview: string;
 
   tagline: string;
+
+  runtime: number;
+
+  genres: {
+    id: number;
+    name: string;
+  }[];
 
   poster_path: string;
 
@@ -26,11 +31,13 @@ class Movie {
 
   title: string;
 
-  originalTitle: string;
-
   overview: string;
 
+  genres: string[];
+
   tagline: string;
+
+  runtime?: number | null;
 
   posterPath: string;
 
@@ -42,19 +49,21 @@ class Movie {
 
   constructor({
     title,
-    original_title,
     overview,
     id,
     poster_path,
     backdrop_path,
     vote_average,
     tagline,
+    genres,
+    runtime,
   }: APIMovie) {
     this.id = id;
     this.title = title;
-    this.originalTitle = original_title;
     this.overview = overview;
     this.tagline = tagline;
+    this.genres = genres.map(genre => genre.name);
+    this.runtime = runtime;
     this.voteAverage = vote_average;
     this.posterPath = `${Movie.tmdbBaseImageUrl}/w300${poster_path}`;
     this.backdropPath = `${Movie.tmdbBaseImageUrl}/w1920_and_h800_multi_faces${backdrop_path}`;
