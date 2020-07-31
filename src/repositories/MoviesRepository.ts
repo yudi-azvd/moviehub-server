@@ -27,6 +27,7 @@ class MoviesRepository {
     return movie;
   }
 
+  // TODO: move it to ActorsRepository.getActorsFromMovie()
   private async getCast(movieId: string | number): Promise<Actor[]> {
     const creditsResponse = await this.api.get<APICredits>(
       `${movieId}/credits`,
