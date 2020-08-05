@@ -33,7 +33,7 @@ class Movie {
 
   overview: string;
 
-  genres: string[];
+  genres?: string[];
 
   tagline: string;
 
@@ -62,11 +62,13 @@ class Movie {
     this.title = title;
     this.overview = overview;
     this.tagline = tagline;
-    this.genres = genres.map(genre => genre.name);
+
+    if (genres) this.genres = genres.map(genre => genre.name);
+
     this.runtime = runtime;
     this.voteAverage = vote_average;
-    this.posterPath = `${Movie.tmdbBaseImageUrl}/w300${poster_path}`;
-    this.backdropPath = `${Movie.tmdbBaseImageUrl}/w1920_and_h800_multi_faces${backdrop_path}`;
+    this.posterPath = poster_path;
+    this.backdropPath = backdrop_path;
   }
 }
 
