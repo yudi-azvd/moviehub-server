@@ -2,15 +2,14 @@ import { AxiosInstance } from 'axios';
 
 import Review, { APIReviewsResponse } from '../models/Review';
 
-import api from '../api';
+import createAxiosInstance from '../api';
 
 class ReviewsRepository {
   private api: AxiosInstance;
 
   constructor() {
-    this.api = api;
-    // FIXME: arranjar um jeito de melhorar isso aqui do Axios
-    // this.api.defaults.baseURL += '/movie';
+    this.api = createAxiosInstance();
+    this.api.defaults.baseURL += '/movie';
   }
 
   public async findAllFromMovie(movieId: number | string): Promise<Review[]> {

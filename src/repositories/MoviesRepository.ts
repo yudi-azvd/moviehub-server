@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import Actor, { APICredits } from '../models/Actor';
 import Movie, { APIMovie } from '../models/Movie';
 
-import api from '../api';
+import createAxiosInstance from '../api';
 
 interface UpcomingMovies {
   results: APIMovie[];
@@ -13,7 +13,7 @@ class MoviesRepository {
   private api: AxiosInstance;
 
   constructor() {
-    this.api = api;
+    this.api = createAxiosInstance();
     this.api.defaults.baseURL += '/movie';
   }
 
