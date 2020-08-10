@@ -10,7 +10,7 @@ class SessionController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
 
-    const existingUser = await usersRepository.findOne(email);
+    const existingUser = await usersRepository.findByEmail(email);
 
     if (!existingUser) {
       throw new AppError('Wrong email and password combination');
