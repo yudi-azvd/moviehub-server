@@ -1,20 +1,29 @@
+import { Repository, getRepository } from 'typeorm';
 import User from '../models/User';
 
 class UsersRepository {
+  private ormRepository: Repository<User>;
+
   private users: User[] = [];
+
+  constructor() {
+    this.ormRepository = getRepository(User);
+  }
 
   public async create({
     name,
     email,
     password,
   }: Omit<User, 'id'>): Promise<User> {
-    const user = new User({
+    const user = this.ormRepository.create({ name, email, password });
+
+    this.users.push({
       name,
       email,
       password,
-    });
+    } as User);
 
-    this.users.push(user);
+    await this.ormRepository.save(user);
 
     return user;
   }
