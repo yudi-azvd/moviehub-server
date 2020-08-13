@@ -1,20 +1,18 @@
-import shortid from 'shortid';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+@Entity('users')
 class User {
-  id: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
+  @Column()
   name: string;
 
+  @Column()
   email: string;
 
+  @Column()
   password: string;
-
-  constructor({ name, email, password }: Omit<User, 'id'>) {
-    this.id = shortid.generate();
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
 }
 
 export default User;
