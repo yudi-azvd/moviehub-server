@@ -5,8 +5,6 @@ import User from '../models/User';
 class UsersRepository {
   private ormRepository: Repository<User>;
 
-  private users: User[] = [];
-
   constructor() {
     this.ormRepository = getRepository(User);
   }
@@ -17,7 +15,6 @@ class UsersRepository {
     password,
   }: Omit<User, 'id'>): Promise<User> {
     const user = this.ormRepository.create({ name, email, password });
-    // const user = await this.create({ name, email, password });
 
     await this.ormRepository.save(user);
 
@@ -25,13 +22,15 @@ class UsersRepository {
   }
 
   public async findOne(id: number): Promise<User | undefined> {
-    const user = this.users.find(u => u.id === id);
+    const user = await this.ormRepository.findOne(id);
 
     return user;
   }
 
   public async findByEmail(email: string): Promise<User | undefined> {
-    const user = this.users.find(u => u.email === email);
+    const user = await this.ormRepository.findOne({
+      where: { email },
+    });
 
     return user;
   }
