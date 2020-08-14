@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+import { Repository, getRepository } from 'typeorm';
 
 import Review, { APIReviewsResponse } from '../models/Review';
 
@@ -7,7 +8,10 @@ import createAxiosInstance from '../api';
 class ReviewsRepository {
   private api: AxiosInstance;
 
+  private ormRepository: Repository<Review>;
+
   constructor() {
+    this.ormRepository = getRepository(Review);
     this.api = createAxiosInstance();
     this.api.defaults.baseURL += '/movie';
   }
@@ -18,10 +22,14 @@ class ReviewsRepository {
     );
 
     const reviews = reviewsResponse.data.results.map(
-      result => new Review(result),
+      result => new Review(result.id, result.author, result.content),
     );
 
     return reviews;
+  }
+
+  public async create({ movieId, author, content }): Promise<Review> {
+    this.ormRepository.create({ movieId, author, content });
   }
 }
 
