@@ -4,9 +4,9 @@ import ReviewsRepository from '../repositories/ReviewsRepository';
 
 const reviewsRouter = Router();
 
-const reviewsRepository = new ReviewsRepository();
-
 reviewsRouter.get('/:movieId', async (request, response) => {
+  const reviewsRepository = new ReviewsRepository();
+
   const reviews = await reviewsRepository.findAllFromMovie(
     request.params.movieId,
   );
