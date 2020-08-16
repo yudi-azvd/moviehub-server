@@ -1,17 +1,13 @@
 import { Router } from 'express';
 
-import ReviewsRepository from '../repositories/ReviewsRepository';
+import MovieReviewsController from '../controllers/MovieReviewsController';
 
-const reviewsRouter = Router();
+const movieReviewsRouter = Router();
 
-reviewsRouter.get('/:movieId', async (request, response) => {
-  const reviewsRepository = new ReviewsRepository();
+const movieReviewController = new MovieReviewsController();
 
-  const reviews = await reviewsRepository.findAllFromMovie(
-    request.params.movieId,
-  );
+movieReviewsRouter.get('/:movie_id', movieReviewController.index);
 
-  return response.json(reviews);
-});
+movieReviewsRouter.post('/', movieReviewController.create);
 
-export default reviewsRouter;
+export default movieReviewsRouter;

@@ -1,4 +1,12 @@
-import { Entity, PrimaryColumn, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  CreateDateColumn,
+} from 'typeorm';
+import User from './User';
 
 export interface APIReview {
   id: string;
@@ -14,19 +22,31 @@ export interface APIReviewsResponse {
 class Review {
   static tmdbBaseImageUrl = process.env.TMDB_BASE_IMAGE_URL;
 
-  @PrimaryColumn()
   tmdbId?: string;
 
   @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column()
-  author: string;
+  author?: string;
+
+  @Column()
+  author_id?: number;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'author_id' })
+  user?: User;
+
+  @Column()
+  movie_id?: number;
 
   @Column()
   content: string;
 
-  constructor(id = '1', author = 'author', content = 'blah') {
+  @CreateDateColumn()
+  created_at?: Date;
+
+  constructor(id: string, author: string, content: string) {
     this.tmdbId = id;
     this.author = author;
     this.content = content;

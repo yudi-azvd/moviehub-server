@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import moviesRouter from './movies.router';
-import reviewsRouter from './reviews.router';
+import movieReviewsRouter from './reviews.router';
 import usersRouter from './users.router';
 import sessionsRouter from './sessions.router';
 
@@ -13,6 +13,6 @@ router.use('/users', usersRouter);
 
 router.use('/movies', moviesRouter);
 
-router.use('/reviews', reviewsRouter);
+router.use('/reviews', movieReviewsRouter);
 
 export default router;

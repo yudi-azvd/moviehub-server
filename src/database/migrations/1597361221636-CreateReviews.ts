@@ -19,6 +19,16 @@ export default class CreateReviews1597361221636 implements MigrationInterface {
           {
             name: 'author',
             type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'movie_id',
+            type: 'serial',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
           },
         ],
       }),
