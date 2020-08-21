@@ -1,19 +1,30 @@
-# Moviehub (servidor)
-(_Em desenvolvimento_) Servidor de uma aplicação parecida com o IMDb.
+# 🎦 Moviehub Servidor
+Servidor de uma aplicação parecida com o IMDb, ideia inspirada no repositório.
 
-## Ler pra entender
+<!-- COLOCAR PREVIEW AQUI -->
+<!--
+- O que esse backend faz?
+- Preview da aplicação
+- Coisas que eu aprendi
+- Para começar
+- Link pro insomnia
+- Possíveis melhoras
+ -->
 
-- https://developers.themoviedb.org/3/authentication/how-do-i-generate-a-session-id
+## Para começar
+Baixe esse repositório na sua máquina e entre no repositório raíz
+
+```sh
+yarn      # instalar as dependências
+yarn dev  # iniciar ambiente de desenvolvimento
+```
 
 
-## The Movie Database
+## The Movie Database (TMDB)
 Esse projeto usa os recursos disponibilizados pelo [TMDB](https://www.themoviedb.org/about/).
 
-Pegar logos de atribuição [aqui](https://www.themoviedb.org/about/logos-attribution).
+<!-- Pegar logos de atribuição [aqui](https://www.themoviedb.org/about/logos-attribution). -->
 
-## Repositoy Pattern
-- https://bryanavery.co.uk/repository-pattern-for-the-rest-api/
-- https://medium.com/@pererikbergman/repository-design-pattern-e28c0f3e4a30
 
 ## Backlog
 [Link](https://trello.com/b/6Pps0G5O/moviehub) pro Trello.
