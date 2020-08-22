@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
+import Movie from './Movie';
+
 @Entity('users')
 class User {
   @PrimaryGeneratedColumn('increment')
@@ -13,6 +15,8 @@ class User {
 
   @Column()
   password: string;
+
+  favoriteMovies?: Movie[];
 }
 
 export default User;
