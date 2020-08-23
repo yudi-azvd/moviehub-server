@@ -35,6 +35,10 @@ class UsersRepository {
       where: { email },
     });
 
+    if (!user) return undefined;
+
+    user.favoriteMovies = await this.getFavoriteMoviesFromUser(user.id);
+
     return user;
   }
 
