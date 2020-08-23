@@ -38,7 +38,7 @@ class UsersRepository {
     return user;
   }
 
-  public async findOne(id: number): Promise<User | undefined> {
+  public async findById(id: number): Promise<User | undefined> {
     const user = await this.ormRepository.findOne(id);
 
     if (!user) return user;

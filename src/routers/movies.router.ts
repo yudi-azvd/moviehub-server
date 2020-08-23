@@ -13,7 +13,7 @@ moviesRouter.get('/upcoming', async (request, response) => {
 });
 
 moviesRouter.get('/:id', async (request, response) => {
-  const movie = await moviesRepository.findOne(request.params.id);
+  const movie = await moviesRepository.findById(request.params.id);
 
   return response.json(movie);
 });

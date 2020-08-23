@@ -18,7 +18,7 @@ class UserController {
 
     const { id } = request.params;
 
-    const user = await usersRepository.findOne(parseInt(id, 10));
+    const user = await usersRepository.findById(parseInt(id, 10));
 
     return response.json(user);
   }

@@ -17,7 +17,7 @@ class MoviesRepository {
     this.api.defaults.baseURL += '/movie';
   }
 
-  public async findOne(id: number | string): Promise<Movie> {
+  public async findById(id: number | string): Promise<Movie> {
     const movieResponse = await this.api.get(`${id}`);
 
     const movie = new Movie(movieResponse.data);
