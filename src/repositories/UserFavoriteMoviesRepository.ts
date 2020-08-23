@@ -46,9 +46,6 @@ class UserFavoriteMoviesRepository {
     return userAndMovie;
   }
 
-  /**
-   * deleteUserFavoriteMovie
-   */
   public async deleteUserFavoriteMovie(
     user_id: number,
     movie_id: number,
