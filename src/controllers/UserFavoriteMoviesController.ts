@@ -7,6 +7,25 @@ import MoviesRepository from '../repositories/MoviesRepository';
 import UsersRepository from '../repositories/UsersRepository';
 
 class UserFavoriteMoviesController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const { user_id: userId } = request.params;
+    const user_id = parseInt(userId, 10);
+
+    const usersRepository = new UsersRepository();
+    const userFavoriteMoviesRepository = new UserFavoriteMoviesRepository();
+
+    const existingUser = await usersRepository.findById(user_id);
+    if (!existingUser) {
+      throw new AppError(`User with id ${user_id} does not exist`, 404);
+    }
+
+    const favoriteMovies = await userFavoriteMoviesRepository.findUserFavoriteMovies(
+      user_id,
+    );
+
+    return response.json(favoriteMovies);
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     const { user_id: userId } = request.params;
     const user_id = parseInt(userId, 10);

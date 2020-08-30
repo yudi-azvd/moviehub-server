@@ -15,6 +15,11 @@ usersRouter.use(ensureUserIsAuthenticated);
 
 usersRouter.get('/:id', userController.show);
 
+usersRouter.get(
+  '/:user_id/favorite_movies/',
+  userFavoriteMoviesController.index,
+);
+
 usersRouter.post(
   '/:user_id/favorite_movies/',
   userFavoriteMoviesController.create,

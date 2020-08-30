@@ -3,14 +3,39 @@ import { getManager } from 'typeorm';
 
 import createAxiosInstance from '../api';
 
+import Movie from '../models/Movie';
 import UserHasFavoriteMovie from '../models/UserHasFavoriteMovie';
 
 class UserFavoriteMoviesRepository {
-  private api: AxiosInstance;
+  private moviesApi: AxiosInstance;
 
   constructor() {
-    this.api = createAxiosInstance();
-    this.api.defaults.baseURL += '/movie';
+    this.moviesApi = createAxiosInstance();
+    this.moviesApi.defaults.baseURL += '/movie';
+  }
+
+  public async findUserFavoriteMovies(user_id: number): Promise<Movie[]> {
+    const userAndMovies = await getManager()
+      .createQueryBuilder(UserHasFavoriteMovie, 'user_favorite_movie')
+      .where('user_favorite_movie.user_id = :user_id', { user_id })
+      .getMany();
+
+    const responsesPromises: Promise<AxiosResponse<APIMovie>>[] = [];
+
+    // userAndFavoriteMovieIds não é um typo!
+    userAndMovies.forEach(userAndFavoriteMovieIds => {
+      const { movie_id } = userAndFavoriteMovieIds;
+
+      responsesPromises.push(this.moviesApi.get(`${movie_id}`));
+    });
+
+    const responses = await Promise.all(responsesPromises);
+
+    const movies = responses
+      .map(response => response.data)
+      .map(apiMovie => new Movie(apiMovie));
+
+    return movies;
   }
 
   public async create(
